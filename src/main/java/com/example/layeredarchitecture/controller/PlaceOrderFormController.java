@@ -224,14 +224,18 @@ public class PlaceOrderFormController {
     }
 
     private void loadAllItemCodes() {
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         try {
             /*Get all items*/
-            Connection connection = DBConnection.getDbConnection().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM Item");
-            while (rst.next()) {
-                cmbItemCode.getItems().add(rst.getString("code"));
+            ItemDAO itemDAO = new ItemDAOImpl();
+
+            ArrayList<ItemDTO> itemDTOS = itemDAO.loadAllItemCodes();
+
+            for (ItemDTO dto : itemDTOS){
+                observableList.add(dto.getCode());
             }
+            cmbItemCode.setItems(observableList);
+
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         } catch (ClassNotFoundException e) {
