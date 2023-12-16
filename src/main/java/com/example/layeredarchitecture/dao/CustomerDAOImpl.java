@@ -93,4 +93,22 @@ public class CustomerDAOImpl implements CustomerDAO{
 
         return customerDTO;
     }
+
+    @Override
+    public ArrayList<CustomerDTO> loadAllCustomerIds() throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getDbConnection().getConnection();
+        Statement stm = connection.createStatement();
+        ResultSet rst = stm.executeQuery("SELECT * FROM Customer");
+        ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
+
+        while (rst.next()) {
+            CustomerDTO customerDTO = new CustomerDTO(
+                    rst.getString("id"),
+                    rst.getString("name"),
+                    rst.getString("address")
+            );
+            customerDTOS.add(customerDTO);
+        }
+        return customerDTOS;
+    }
 }

@@ -19,4 +19,6 @@ public interface CustomerDAO {
     public String generateNewId() throws SQLException, ClassNotFoundException ;
 
     public CustomerDTO searchCustomer(String newValue) throws SQLException, ClassNotFoundException ;
+
+    ArrayList<CustomerDTO> loadAllCustomerIds() throws SQLException, ClassNotFoundException;
 }

@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +28,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -195,14 +198,23 @@ public class PlaceOrderFormController {
     }
 
     private void loadAllCustomerIds() {
+        ObservableList<String> observableList = FXCollections.observableArrayList();
         try {
-            Connection connection = DBConnection.getDbConnection().getConnection();
+            CustomerDAO customerDAO = new CustomerDAOImpl();
+
+            ArrayList<CustomerDTO> customerDTOS = customerDAO.loadAllCustomerIds();
+
+            for (CustomerDTO dto : customerDTOS){
+                observableList.add(dto.getId());
+            }
+            cmbCustomerId.setItems(observableList);
+            /*Connection connection = DBConnection.getDbConnection().getConnection();
             Statement stm = connection.createStatement();
             ResultSet rst = stm.executeQuery("SELECT * FROM Customer");
 
             while (rst.next()) {
                 cmbCustomerId.getItems().add(rst.getString("id"));
-            }
+            }*/
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to load customer ids").show();
