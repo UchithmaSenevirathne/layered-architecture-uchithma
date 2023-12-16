@@ -1,12 +1,10 @@
 package com.example.layeredarchitecture.dao;
 
 import com.example.layeredarchitecture.db.DBConnection;
-import com.example.layeredarchitecture.model.CustomerDTO;
-import com.example.layeredarchitecture.model.ItemDTO;
 
 import java.sql.*;
 
-public class PlaceOrderDAOImpl implements PlaceOrderDAO{
+public class OrderDAOImpl implements OrderDAO {
     @Override
     public String generateNewOrderId() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();

@@ -10,8 +10,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -186,7 +184,7 @@ public class PlaceOrderFormController {
 
     public String generateNewOrderId() {
         try {
-            PlaceOrderDAO placeOrderDAO = new PlaceOrderDAOImpl();
+            OrderDAO placeOrderDAO = new OrderDAOImpl();
             return placeOrderDAO.generateNewOrderId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
