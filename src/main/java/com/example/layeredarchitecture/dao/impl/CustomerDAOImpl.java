@@ -23,6 +23,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             );
             customerDTOS.add(customerDTO);
         }
+
         return customerDTOS;
     }
 
@@ -50,7 +51,6 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("SELECT id FROM Customer WHERE id=?", id);
-
         return resultSet.next();
     }
 
@@ -78,21 +78,5 @@ public class CustomerDAOImpl implements CustomerDAO {
         }
 
         return customerDTO;
-    }
-
-    @Override
-    public ArrayList<CustomerDTO> loadAllCustomerIds() throws SQLException, ClassNotFoundException {
-        ResultSet rst = SQLUtil.execute("SELECT * FROM Customer");
-        ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
-
-        while (rst.next()) {
-            CustomerDTO customerDTO = new CustomerDTO(
-                    rst.getString("id"),
-                    rst.getString("name"),
-                    rst.getString("address")
-            );
-            customerDTOS.add(customerDTO);
-        }
-        return customerDTOS;
     }
 }

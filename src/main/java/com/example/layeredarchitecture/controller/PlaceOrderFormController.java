@@ -64,8 +64,6 @@ public class PlaceOrderFormController {
     OrderDAO orderDAO = new OrderDAOImpl();
     OrderDetailDAO orderDetailDAO = new OrderDetailDAOImpl();
 
-    Connection connection;
-
     public void initialize() throws SQLException, ClassNotFoundException {
 
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -206,14 +204,12 @@ public class PlaceOrderFormController {
     }
 
     private void loadAllCustomerIds() {
-        ObservableList<String> observableList = FXCollections.observableArrayList();
         try {
-            ArrayList<CustomerDTO> customerDTOS = customerDAO.loadAllCustomerIds();
+            ArrayList<CustomerDTO> customerDTOS = customerDAO.getAllCustomers();
 
             for (CustomerDTO dto : customerDTOS){
-                observableList.add(dto.getId());
+                cmbCustomerId.getItems().add(dto.getId());
             }
-            cmbCustomerId.setItems(observableList);
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to load customer ids").show();
@@ -223,15 +219,13 @@ public class PlaceOrderFormController {
     }
 
     private void loadAllItemCodes() {
-        ObservableList<String> observableList = FXCollections.observableArrayList();
         try {
             /*Get all items*/
-            ArrayList<ItemDTO> itemDTOS = itemDAO.loadAllItemCodes();
+            ArrayList<ItemDTO> itemDTOS = itemDAO.getAllItems();
 
             for (ItemDTO dto : itemDTOS){
-                observableList.add(dto.getCode());
+                cmbItemCode.getItems().add(dto.getCode());
             }
-            cmbItemCode.setItems(observableList);
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -341,16 +335,13 @@ public class PlaceOrderFormController {
                 transactionUtil.rollbackTransaction();
                 return false;
             }
-            //System.out.println("--*---");
             for (OrderDetailDTO detail : orderDetails) {
-                //System.out.println("-----");
                 boolean isOrderDetailSaved = orderDetailDAO.saveOrderDetails(detail);
 
                 if (!isOrderDetailSaved) {
                     transactionUtil.rollbackTransaction();
                     return false;
                 }
-                //System.out.println("--*-*--");
 //          //Search & Update Item
                 ItemDTO item = findItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());

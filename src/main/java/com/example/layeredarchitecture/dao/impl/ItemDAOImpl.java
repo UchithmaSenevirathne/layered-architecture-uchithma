@@ -79,21 +79,4 @@ public class ItemDAOImpl implements ItemDAO {
         }
         return itemDTO;
     }
-
-    @Override
-    public ArrayList<ItemDTO> loadAllItemCodes() throws SQLException, ClassNotFoundException {
-        ResultSet rst = SQLUtil.execute("SELECT * FROM Item");
-        ArrayList<ItemDTO> itemDTOS = new ArrayList<>();
-
-        while (rst.next()) {
-            ItemDTO itemDTO = new ItemDTO(
-                    rst.getString("code"),
-                    rst.getString("description"),
-                    rst.getBigDecimal("unitPrice"),
-                    rst.getInt("qtyOnHand")
-            );
-            itemDTOS.add(itemDTO);
-        }
-        return itemDTOS;
-    }
 }
