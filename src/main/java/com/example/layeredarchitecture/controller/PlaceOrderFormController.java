@@ -10,6 +10,7 @@ import com.example.layeredarchitecture.model.CustomerDTO;
 import com.example.layeredarchitecture.model.ItemDTO;
 import com.example.layeredarchitecture.model.OrderDTO;
 import com.example.layeredarchitecture.model.OrderDetailDTO;
+import com.example.layeredarchitecture.util.TransactionUtil;
 import com.example.layeredarchitecture.view.tdm.OrderDetailTM;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -328,17 +329,16 @@ public class PlaceOrderFormController {
         /*Transaction*/
 
         try {
-            connection = DBConnection.getDbConnection().getConnection();
+            TransactionUtil transactionUtil = new TransactionUtil();
             /*if order id already exist*/
             if (orderDAO.searchOrderId(orderId)) {
 
             }
-            connection.setAutoCommit(false);
+            transactionUtil.startTransaction();
 
             boolean isSavedOrder = orderDAO.saveOrder(new OrderDTO(orderId,orderDate,customerId,null,null));
             if (!isSavedOrder) {
-                connection.rollback();
-                connection.setAutoCommit(true);
+                transactionUtil.rollbackTransaction();
                 return false;
             }
             //System.out.println("--*---");
@@ -347,8 +347,7 @@ public class PlaceOrderFormController {
                 boolean isOrderDetailSaved = orderDetailDAO.saveOrderDetails(detail);
 
                 if (!isOrderDetailSaved) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
+                    transactionUtil.rollbackTransaction();
                     return false;
                 }
                 //System.out.println("--*-*--");
@@ -357,14 +356,12 @@ public class PlaceOrderFormController {
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
                 if (!itemDAO.updateItem(item)) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
+                    transactionUtil.rollbackTransaction();
                     return false;
                 }
             }
 
-            connection.commit();
-            connection.setAutoCommit(true);
+            transactionUtil.endTransaction();
             return true;
 
         } catch (SQLException throwables) {
