@@ -113,7 +113,7 @@ public class PlaceOrderFormController {
 //                            "There is no such customer associated with the id " + id
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
-                        CustomerDTO customerDTO = customerDAO.searchCustomer(newValue);
+                        CustomerDTO customerDTO = customerDAO.search(newValue);
 
                         txtCustomerName.setText(customerDTO.getName());
                     } catch (SQLException e) {
@@ -140,7 +140,7 @@ public class PlaceOrderFormController {
                     if (!existItem(newItemCode + "")) {
 //                        throw new NotFoundException("There is no such item associated with the id " + code);
                     }
-                    ItemDTO itemDTO = itemDAO.searchItem(newItemCode);
+                    ItemDTO itemDTO = itemDAO.search(newItemCode);
 
                     txtDescription.setText(itemDTO.getDescription());
                     txtUnitPrice.setText(itemDTO.getUnitPrice().setScale(2).toString());
@@ -185,16 +185,16 @@ public class PlaceOrderFormController {
     }
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        return itemDAO.existItem(code);
+        return itemDAO.exist(code);
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        return customerDAO.existCustomer(id);
+        return customerDAO.exist(id);
     }
 
     public String generateNewOrderId() {
         try {
-            return orderDAO.generateNewOrderId();
+            return orderDAO.generateNewId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
         } catch (ClassNotFoundException e) {
@@ -205,7 +205,7 @@ public class PlaceOrderFormController {
 
     private void loadAllCustomerIds() {
         try {
-            ArrayList<CustomerDTO> customerDTOS = customerDAO.getAllCustomers();
+            ArrayList<CustomerDTO> customerDTOS = customerDAO.getAll();
 
             for (CustomerDTO dto : customerDTOS){
                 cmbCustomerId.getItems().add(dto.getId());
@@ -221,7 +221,7 @@ public class PlaceOrderFormController {
     private void loadAllItemCodes() {
         try {
             /*Get all items*/
-            ArrayList<ItemDTO> itemDTOS = itemDAO.getAllItems();
+            ArrayList<ItemDTO> itemDTOS = itemDAO.getAll();
 
             for (ItemDTO dto : itemDTOS){
                 cmbItemCode.getItems().add(dto.getCode());
@@ -323,36 +323,35 @@ public class PlaceOrderFormController {
         /*Transaction*/
 
         try {
-            TransactionUtil transactionUtil = new TransactionUtil();
+            TransactionUtil.startTransaction();
             /*if order id already exist*/
-            if (orderDAO.searchOrderId(orderId)) {
+            if (orderDAO.exist(orderId)) {
 
             }
-            transactionUtil.startTransaction();
 
-            boolean isSavedOrder = orderDAO.saveOrder(new OrderDTO(orderId,orderDate,customerId,null,null));
+            boolean isSavedOrder = orderDAO.save(new OrderDTO(orderId,orderDate,customerId,null,null));
             if (!isSavedOrder) {
-                transactionUtil.rollbackTransaction();
+                TransactionUtil.rollbackTransaction();
                 return false;
             }
             for (OrderDetailDTO detail : orderDetails) {
-                boolean isOrderDetailSaved = orderDetailDAO.saveOrderDetails(detail);
+                boolean isOrderDetailSaved = orderDetailDAO.save(detail);
 
                 if (!isOrderDetailSaved) {
-                    transactionUtil.rollbackTransaction();
+                    TransactionUtil.rollbackTransaction();
                     return false;
                 }
 //          //Search & Update Item
                 ItemDTO item = findItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
-                if (!itemDAO.updateItem(item)) {
-                    transactionUtil.rollbackTransaction();
+                if (!itemDAO.update(item)) {
+                    TransactionUtil.rollbackTransaction();
                     return false;
                 }
             }
 
-            transactionUtil.endTransaction();
+            TransactionUtil.endTransaction();
             return true;
 
         } catch (SQLException throwables) {
@@ -366,7 +365,7 @@ public class PlaceOrderFormController {
 
     public ItemDTO findItem(String code) {
         try {
-            return itemDAO.searchItem(code);
+            return itemDAO.search(code);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to find the Item " + code, e);
         } catch (ClassNotFoundException e) {

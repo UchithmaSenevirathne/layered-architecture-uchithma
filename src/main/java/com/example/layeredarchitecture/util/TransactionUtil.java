@@ -6,22 +6,32 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class TransactionUtil {
-    Connection connection = DBConnection.getDbConnection().getConnection();
+    static Connection connection;
+
+    static {
+        try {
+            connection = DBConnection.getDbConnection().getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public TransactionUtil() throws SQLException, ClassNotFoundException {
     }
 
 
-    public void startTransaction() throws SQLException {
+    public static void startTransaction() throws SQLException {
         connection.setAutoCommit(false);
     }
 
-    public void rollbackTransaction() throws SQLException {
+    public static void rollbackTransaction() throws SQLException {
         connection.rollback();
         connection.setAutoCommit(true);
     }
 
-    public void endTransaction() throws SQLException {
+    public static void endTransaction() throws SQLException {
         connection.commit();
         connection.setAutoCommit(true);
     }
