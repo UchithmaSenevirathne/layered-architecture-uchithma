@@ -14,9 +14,11 @@ public class SQLUtil {
             pstm.setObject((i+1), args[i]);
         }
 
-        if (query.startsWith("SELECT") || query.startsWith("select") || query.startsWith("Select")){
+        if (query.toUpperCase().startsWith("SELECT")){
             return (T) pstm.executeQuery();
         }else
             return (T)(Boolean)(pstm.executeUpdate() > 0);
     }
 }
+
+

@@ -341,9 +341,9 @@ public class PlaceOrderFormController {
                 connection.setAutoCommit(true);
                 return false;
             }
-            System.out.println("--*---");
+            //System.out.println("--*---");
             for (OrderDetailDTO detail : orderDetails) {
-                System.out.println("-----");
+                //System.out.println("-----");
                 boolean isOrderDetailSaved = orderDetailDAO.saveOrderDetails(detail);
 
                 if (!isOrderDetailSaved) {
@@ -351,7 +351,7 @@ public class PlaceOrderFormController {
                     connection.setAutoCommit(true);
                     return false;
                 }
-                System.out.println("--*-*--");
+                //System.out.println("--*-*--");
 //          //Search & Update Item
                 ItemDTO item = findItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
