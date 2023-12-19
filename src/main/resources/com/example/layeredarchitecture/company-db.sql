@@ -73,3 +73,6 @@ CREATE TABLE `OrderDetails` (
   CONSTRAINT `OrderDetails_ibfk_2` FOREIGN KEY (`itemCode`) REFERENCES `Item` (`code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
+select c.id, c.name, o.oid, o.date, od.itemCode, od.qty, od.unitPrice from Customer c right join Orders o on c.id = o.customerID right join OrderDetails od on o.oid = od.oid where c.id like "C00-001" or c.name like "C00-001" or o.oid like "C00-001" or o.date like "C00-001" or od.itemCode like "C00-001" or od.qty like "C00-001" or od.unitPrice like "C00-001";

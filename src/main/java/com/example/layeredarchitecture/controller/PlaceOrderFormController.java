@@ -367,7 +367,7 @@ public class PlaceOrderFormController {
         return null;
     }
 
-    public void report(){
+    /*public void report(){
         queryDAO.customerOrderDetails(new CustomDTO());
-    }
+    }*/
 }

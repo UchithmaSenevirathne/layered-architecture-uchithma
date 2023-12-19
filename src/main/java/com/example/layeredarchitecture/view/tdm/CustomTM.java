@@ -1,28 +1,33 @@
-package com.example.layeredarchitecture.model;
+package com.example.layeredarchitecture.view.tdm;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
-public class CustomDTO {
+public class CustomTM {
+    private String oid;
     private String id;
     private String name;
-    private String oid;
     private String itemCode;
     private int qty;
     private BigDecimal unitPrice;
     private String date;
 
-    public CustomDTO(String id, String name, String oid, String itemCode, int qty, BigDecimal unitPrice, String date) {
+    public CustomTM(String oid, String id, String name, String itemCode, int qty, BigDecimal unitPrice, String date) {
+        this.oid = oid;
         this.id = id;
         this.name = name;
-        this.oid = oid;
         this.itemCode = itemCode;
         this.qty = qty;
         this.unitPrice = unitPrice;
         this.date = date;
     }
 
-    public CustomDTO(){}
+    public String getOrderId() {
+        return oid;
+    }
+
+    public void setOrderId(String oid) {
+        this.oid = oid;
+    }
 
     public String getId() {
         return id;
@@ -38,14 +43,6 @@ public class CustomDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getOrderId() {
-        return oid;
-    }
-
-    public void setOrderId(String oid) {
-        this.oid = oid;
     }
 
     public String getItemCode() {
@@ -82,14 +79,14 @@ public class CustomDTO {
 
     @Override
     public String toString() {
-        return "CustomDTO{" +
-                "id='" + id + '\'' +
+        return "CustomTM{" +
+                "orderId='" + oid + '\'' +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", orderId='" + oid + '\'' +
                 ", itemCode='" + itemCode + '\'' +
                 ", qty=" + qty +
                 ", unitPrice=" + unitPrice +
-                ", orderDate=" + date +
+                ", orderDate='" + date + '\'' +
                 '}';
     }
 }

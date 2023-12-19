@@ -12,25 +12,26 @@
 
 <AnchorPane fx:id="root" prefHeight="540.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.layeredarchitecture.controller.ViewOrdersFormController">
    <children>
-      <ImageView fitHeight="64.0" fitWidth="67.0" layoutX="24.0" layoutY="23.0" onMouseClicked="#navigateToHome" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="24.0" layoutY="28.0" onMouseClicked="#navigateToHome" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assests/images/home-icon.png" />
          </image>
       </ImageView>
-      <Label layoutX="111.0" layoutY="42.0" text="SEARCH ORDERS">
+      <Label layoutX="85.0" layoutY="40.0" text="Search Orders">
          <font>
             <Font name="Corbel Bold" size="21.0" />
          </font>
       </Label>
-      <TextField layoutX="232.0" layoutY="128.0" onAction="#searchOrderOnAction" prefHeight="26.0" prefWidth="397.0" promptText="Search" />
-      <TableView fx:id="tableView" layoutX="24.0" layoutY="189.0" prefHeight="330.0" prefWidth="607.0">
+      <TextField fx:id="txtSearch" layoutX="232.0" layoutY="128.0" onAction="#searchOrderOnAction" prefHeight="26.0" prefWidth="397.0" promptText="Search Customer" />
+      <TableView fx:id="tableView" layoutX="24.0" layoutY="189.0" prefHeight="330.0" prefWidth="605.0">
         <columns>
-          <TableColumn fx:id="colOId" prefWidth="75.0" text="ORDER ID" />
+          <TableColumn fx:id="colOId" prefWidth="62.39999008178711" text="ORDER ID" />
           <TableColumn fx:id="colCusId" prefWidth="88.800048828125" text="CUSTOMER ID" />
-            <TableColumn fx:id="colCusName" prefWidth="168.8000030517578" text="CUSTOMER NAME" />
-            <TableColumn fx:id="colItemCode" prefWidth="80.800048828125" text="ITEM CODE" />
-            <TableColumn fx:id="colQty" prefWidth="76.79998779296875" text="QUANTITY" />
-            <TableColumn fx:id="colUnitPrice" prefWidth="114.4000244140625" text="UNIT PRICE" />
+            <TableColumn fx:id="colCusName" prefWidth="109.60005187988281" text="CUSTOMER NAME" />
+            <TableColumn fx:id="colItemCode" prefWidth="69.5999755859375" text="ITEM CODE" />
+            <TableColumn fx:id="colQty" prefWidth="76.800048828125" text="QUANTITY" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="89.5999755859375" text="UNIT PRICE" />
+            <TableColumn fx:id="colDate" prefWidth="105.60000000000002" text="DATE" />
         </columns>
       </TableView>
    </children>
