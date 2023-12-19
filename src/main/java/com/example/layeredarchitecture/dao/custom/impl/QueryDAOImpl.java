@@ -12,7 +12,24 @@ import java.util.ArrayList;
 public class QueryDAOImpl implements QueryDAO {
     @Override
     public ArrayList<CustomDTO> customerOrderDetails(String search) throws SQLException, ClassNotFoundException {
-        ResultSet rst = SQLUtil.execute("select c.id, c.name, o.oid, o.date, i.description, od.qty, od.unitPrice from Customer c right join Orders o on c.id = o.customerID right join OrderDetails od on o.oid = od.oid right join item i on i.code = od.itemCode where c.name = ?", search);
+        ResultSet rst = SQLUtil.execute("select\n" +
+                "   c.id,\n" +
+                "   c.name,\n" +
+                "   o.oid,\n" +
+                "   o.date,\n" +
+                "   i.description,\n" +
+                "   od.qty,\n" +
+                "   od.unitPrice\n" +
+                "from\n" +
+                "   Customer c\n" +
+                "       right join\n" +
+                "   Orders o on c.id = o.customerID\n" +
+                "       right join\n" +
+                "   OrderDetails od on o.oid = od.oid\n" +
+                "       right join\n" +
+                "   item i on i.code = od.itemCode\n" +
+                "where c.name = ?",
+                search);
 
         ArrayList<CustomDTO> customDTOS = new ArrayList<>();
 
