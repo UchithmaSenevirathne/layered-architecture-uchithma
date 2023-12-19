@@ -74,10 +74,10 @@ public class ViewOrdersFormController {
         colDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
     }
 
-    private void searchOrders(String search) {
+    private void searchOrders(String name) {
         tableView.getItems().clear();
         try {
-            ArrayList<CustomDTO> customDTOS = queryDAO.customerOrderDetails(search);
+            ArrayList<CustomDTO> customDTOS = queryDAO.customerOrderDetails(name);
             System.out.println(customDTOS);
 
             for (CustomDTO dto : customDTOS){
