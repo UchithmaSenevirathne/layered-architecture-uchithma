@@ -6,16 +6,16 @@ public class CustomTM {
     private String oid;
     private String id;
     private String name;
-    private String itemCode;
+    private String description;
     private int qty;
     private BigDecimal unitPrice;
     private String date;
 
-    public CustomTM(String oid, String id, String name, String itemCode, int qty, BigDecimal unitPrice, String date) {
+    public CustomTM(String oid, String id, String name, String description, int qty, BigDecimal unitPrice, String date) {
         this.oid = oid;
         this.id = id;
         this.name = name;
-        this.itemCode = itemCode;
+        this.description = description;
         this.qty = qty;
         this.unitPrice = unitPrice;
         this.date = date;
@@ -45,12 +45,12 @@ public class CustomTM {
         this.name = name;
     }
 
-    public String getItemCode() {
-        return itemCode;
+    public String getItemDescription() {
+        return description;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public void setItemDescription(String description) {
+        this.description = description;
     }
 
     public int getQty() {
@@ -83,7 +83,7 @@ public class CustomTM {
                 "orderId='" + oid + '\'' +
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", itemCode='" + itemCode + '\'' +
+                ", itemDescription='" + description + '\'' +
                 ", qty=" + qty +
                 ", unitPrice=" + unitPrice +
                 ", orderDate='" + date + '\'' +

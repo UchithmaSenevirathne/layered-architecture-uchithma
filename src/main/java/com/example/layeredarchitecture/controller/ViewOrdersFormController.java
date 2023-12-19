@@ -35,7 +35,7 @@ public class ViewOrdersFormController {
     private TableColumn<?, ?> colCusName;
 
     @FXML
-    private TableColumn<?, ?> colItemCode;
+    private TableColumn<?, ?> colItemDescription;
 
     @FXML
     private TableColumn<?, ?> colOId;
@@ -68,7 +68,7 @@ public class ViewOrdersFormController {
         colOId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
         colCusId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCusName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colItemCode.setCellValueFactory(new PropertyValueFactory<>("itemCode"));
+        colItemDescription.setCellValueFactory(new PropertyValueFactory<>("itemDescription"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
@@ -86,7 +86,7 @@ public class ViewOrdersFormController {
                                 dto.getOrderId(),
                                 dto.getId(),
                                 dto.getName(),
-                                dto.getItemCode(),
+                                dto.getItemDescription(),
                                 dto.getQty(),
                                 dto.getUnitPrice(),
                                 dto.getOrderDate()

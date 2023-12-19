@@ -7,16 +7,16 @@ public class CustomDTO {
     private String id;
     private String name;
     private String oid;
-    private String itemCode;
+    private String description;
     private int qty;
     private BigDecimal unitPrice;
     private String date;
 
-    public CustomDTO(String id, String name, String oid, String itemCode, int qty, BigDecimal unitPrice, String date) {
+    public CustomDTO(String id, String name, String oid, String description, int qty, BigDecimal unitPrice, String date) {
         this.id = id;
         this.name = name;
         this.oid = oid;
-        this.itemCode = itemCode;
+        this.description = description;
         this.qty = qty;
         this.unitPrice = unitPrice;
         this.date = date;
@@ -48,12 +48,12 @@ public class CustomDTO {
         this.oid = oid;
     }
 
-    public String getItemCode() {
-        return itemCode;
+    public String getItemDescription() {
+        return description;
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public void setItemDescription(String description) {
+        this.description = description;
     }
 
     public int getQty() {
@@ -86,7 +86,7 @@ public class CustomDTO {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", orderId='" + oid + '\'' +
-                ", itemCode='" + itemCode + '\'' +
+                ", itemDescription='" + description + '\'' +
                 ", qty=" + qty +
                 ", unitPrice=" + unitPrice +
                 ", orderDate=" + date +
