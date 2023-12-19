@@ -98,11 +98,11 @@ public class ViewOrdersFormController {
         }
     }
 
-    @FXML
+    /*@FXML
     void searchOrderOnAction(ActionEvent event){
         String search = txtSearch.getText();
         searchOrders(search);
-    }
+    }*/
 
     @FXML
     void navigateToHome(MouseEvent event) throws IOException {

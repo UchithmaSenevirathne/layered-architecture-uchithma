@@ -21,7 +21,7 @@
             <Font name="Corbel Bold" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSearch" layoutX="232.0" layoutY="128.0" onAction="#searchOrderOnAction" prefHeight="26.0" prefWidth="397.0" promptText="Search Customer" />
+      <TextField fx:id="txtSearch" layoutX="232.0" layoutY="128.0" prefHeight="26.0" prefWidth="397.0" promptText="Search Customer" />
       <TableView fx:id="tableView" layoutX="24.0" layoutY="189.0" prefHeight="330.0" prefWidth="605.0">
         <columns>
           <TableColumn fx:id="colOId" prefWidth="62.39999008178711" text="ORDER ID" />
