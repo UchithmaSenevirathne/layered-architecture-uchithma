@@ -2,6 +2,7 @@ package com.example.layeredarchitecture.dao.custom.impl;
 
 import com.example.layeredarchitecture.dao.custom.QueryDAO;
 import com.example.layeredarchitecture.dto.CustomDTO;
+import com.example.layeredarchitecture.entity.Custom;
 import com.example.layeredarchitecture.util.SQLUtil;
 
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class QueryDAOImpl implements QueryDAO {
     @Override
-    public ArrayList<CustomDTO> customerOrderDetails(String name) throws SQLException, ClassNotFoundException {
+    public ArrayList<Custom> customerOrderDetails(String name) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("select\n" +
                 "   c.id,\n" +
                 "   c.name,\n" +
@@ -30,10 +31,10 @@ public class QueryDAOImpl implements QueryDAO {
                 "where c.name = ?",
                 name);
 
-        ArrayList<CustomDTO> customDTOS = new ArrayList<>();
+        ArrayList<Custom> customs = new ArrayList<>();
 
         while(rst.next()){
-            CustomDTO customDTO = new CustomDTO(
+            Custom custom = new Custom(
                     rst.getString("id"),
                     rst.getString("name"),
                     rst.getString("oid"),
@@ -42,9 +43,9 @@ public class QueryDAOImpl implements QueryDAO {
                     rst.getBigDecimal("unitPrice"),
                     rst.getString("date")
             );
-            customDTOS.add(customDTO);
-            System.out.println(customDTOS);
+            customs.add(custom);
+            System.out.println(customs);
         }
-        return customDTOS;
+        return customs;
     }
 }
