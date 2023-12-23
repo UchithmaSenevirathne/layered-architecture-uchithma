@@ -1,9 +1,10 @@
 package com.example.layeredarchitecture.dao.custom;
 
 import com.example.layeredarchitecture.dao.CrudDAO;
-import com.example.layeredarchitecture.model.ItemDTO;
+import com.example.layeredarchitecture.dto.ItemDTO;
+import com.example.layeredarchitecture.entity.Item;
 
-public interface ItemDAO extends CrudDAO<ItemDTO> {
+public interface ItemDAO extends CrudDAO<Item> {
     /*public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException ;
 
     public boolean deleteItem(String code) throws SQLException, ClassNotFoundException ;

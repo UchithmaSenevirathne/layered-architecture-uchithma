@@ -2,8 +2,7 @@ package com.example.layeredarchitecture.controller;
 
 import com.example.layeredarchitecture.bo.BOFactory;
 import com.example.layeredarchitecture.bo.custom.QueryBO;
-import com.example.layeredarchitecture.bo.custom.impl.QueryBOImpl;
-import com.example.layeredarchitecture.model.CustomDTO;
+import com.example.layeredarchitecture.dto.CustomDTO;
 import com.example.layeredarchitecture.view.tdm.CustomTM;
 import javafx.application.Platform;
 import javafx.fxml.FXML;

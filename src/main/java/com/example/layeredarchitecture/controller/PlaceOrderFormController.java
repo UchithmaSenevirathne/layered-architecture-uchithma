@@ -2,8 +2,7 @@ package com.example.layeredarchitecture.controller;
 
 import com.example.layeredarchitecture.bo.BOFactory;
 import com.example.layeredarchitecture.bo.custom.PlaceOrderBO;
-import com.example.layeredarchitecture.bo.custom.impl.*;
-import com.example.layeredarchitecture.model.*;
+import com.example.layeredarchitecture.dto.*;
 import com.example.layeredarchitecture.view.tdm.OrderDetailTM;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
