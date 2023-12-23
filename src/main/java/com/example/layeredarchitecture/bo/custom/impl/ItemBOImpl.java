@@ -12,37 +12,32 @@ public class ItemBOImpl implements ItemBO {
     ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
 
     @Override
-    public ArrayList<ItemDTO> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
         return itemDAO.getAll();
     }
 
     @Override
-    public boolean delete(String code) throws SQLException, ClassNotFoundException {
+    public boolean deleteItem(String code) throws SQLException, ClassNotFoundException {
         return itemDAO.delete(code);
     }
 
     @Override
-    public boolean save(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
+    public boolean saveItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
         return itemDAO.save(itemDTO);
     }
 
     @Override
-    public boolean update(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
+    public boolean updateItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
         return itemDAO.update(itemDTO);
     }
 
     @Override
-    public boolean exist(String code) throws SQLException, ClassNotFoundException {
+    public boolean existItem(String code) throws SQLException, ClassNotFoundException {
         return itemDAO.exist(code);
     }
 
     @Override
-    public String generateNewId() throws SQLException, ClassNotFoundException {
+    public String generateNewItemCode() throws SQLException, ClassNotFoundException {
         return itemDAO.generateNewId();
     }
-
-    /*@Override
-    public ItemDTO search(String newItemCode) throws SQLException, ClassNotFoundException {
-        return itemDAO.search(newItemCode);
-    }*/
 }
