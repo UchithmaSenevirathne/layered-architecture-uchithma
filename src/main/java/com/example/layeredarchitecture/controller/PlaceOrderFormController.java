@@ -58,7 +58,7 @@ public class PlaceOrderFormController {
     OrderBO orderBO = new OrderBOImpl();
     OrderDetailBO orderDetailBO = new OrderDetailBOImpl();
 
-    public void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize(){
 
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
         tblOrderDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -356,7 +356,6 @@ public class PlaceOrderFormController {
         return false;
     }
 
-
     public ItemDTO findItem(String code) {
         try {
             return itemBO.search(code);
@@ -367,8 +366,4 @@ public class PlaceOrderFormController {
         }
         return null;
     }
-
-    /*public void report(){
-        queryDAO.customerOrderDetails(new CustomDTO());
-    }*/
 }

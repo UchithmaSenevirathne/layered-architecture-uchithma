@@ -6,5 +6,5 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface QueryBO {
-    public ArrayList<CustomDTO> customerOrderDetails(String name) throws SQLException, ClassNotFoundException;
+    ArrayList<CustomDTO> customerOrderDetails(String name) throws SQLException, ClassNotFoundException;
 }

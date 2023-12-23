@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ItemBO {
-    public ArrayList<ItemDTO> getAll() throws SQLException, ClassNotFoundException;
-    public boolean delete(String code) throws SQLException, ClassNotFoundException;
-    public boolean save(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
-    public boolean update(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
-    public boolean exist(String code) throws SQLException, ClassNotFoundException;
-    public String generateNewId() throws SQLException, ClassNotFoundException;
-    public ItemDTO search(String newItemCode) throws SQLException, ClassNotFoundException;
+    ArrayList<ItemDTO> getAll() throws SQLException, ClassNotFoundException;
+    boolean delete(String code) throws SQLException, ClassNotFoundException;
+    boolean save(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
+    boolean update(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
+    boolean exist(String code) throws SQLException, ClassNotFoundException;
+    String generateNewId() throws SQLException, ClassNotFoundException;
+    ItemDTO search(String newItemCode) throws SQLException, ClassNotFoundException;
 }

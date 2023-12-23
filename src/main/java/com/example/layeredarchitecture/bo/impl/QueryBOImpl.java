@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class QueryBOImpl implements QueryBO {
     QueryDAO queryDAO = new QueryDAOImpl();
+
     @Override
     public ArrayList<CustomDTO> customerOrderDetails(String name) throws SQLException, ClassNotFoundException {
         return queryDAO.customerOrderDetails(name);

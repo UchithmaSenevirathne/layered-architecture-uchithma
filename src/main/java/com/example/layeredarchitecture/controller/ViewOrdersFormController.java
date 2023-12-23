@@ -52,8 +52,6 @@ public class ViewOrdersFormController {
 
     @FXML
     private TextField txtSearch;
-
-    //QueryDAO queryDAO = new QueryDAOImpl();
     QueryBO queryBO = new QueryBOImpl();
 
     public void initialize(){

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class CustomerBOImpl implements CustomerBO {
     CustomerDAO customerDAO = new CustomerDAOImpl();
+
     @Override
     public boolean save(CustomerDTO dto) throws SQLException, ClassNotFoundException{
         return customerDAO.save(dto);

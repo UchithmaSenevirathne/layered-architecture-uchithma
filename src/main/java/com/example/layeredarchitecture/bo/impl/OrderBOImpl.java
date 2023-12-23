@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class OrderBOImpl implements OrderBO {
     OrderDAO orderDAO = new OrderDAOImpl();
+
     @Override
     public String generateNewId() throws SQLException, ClassNotFoundException {
         return orderDAO.generateNewId();
