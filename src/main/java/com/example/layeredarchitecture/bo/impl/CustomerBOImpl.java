@@ -41,8 +41,8 @@ public class CustomerBOImpl implements CustomerBO {
         return customerDAO.generateNewId();
     }
 
-    @Override
+    /*@Override
     public CustomerDTO search(String newValue) throws SQLException, ClassNotFoundException {
         return customerDAO.search(newValue);
-    }
+    }*/
 }
