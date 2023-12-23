@@ -1,5 +1,7 @@
 package com.example.layeredarchitecture.controller;
 
+import com.example.layeredarchitecture.bo.QueryBO;
+import com.example.layeredarchitecture.bo.QueryBOImpl;
 import com.example.layeredarchitecture.dao.custom.QueryDAO;
 import com.example.layeredarchitecture.dao.custom.impl.QueryDAOImpl;
 import com.example.layeredarchitecture.model.CustomDTO;
@@ -55,7 +57,8 @@ public class ViewOrdersFormController {
     @FXML
     private TextField txtSearch;
 
-    QueryDAO queryDAO = new QueryDAOImpl();
+    //QueryDAO queryDAO = new QueryDAOImpl();
+    QueryBO queryBO = new QueryBOImpl();
 
     public void initialize(){
         setCellValueFactory();
@@ -77,7 +80,7 @@ public class ViewOrdersFormController {
     private void searchOrders(String name) {
         tableView.getItems().clear();
         try {
-            ArrayList<CustomDTO> customDTOS = queryDAO.customerOrderDetails(name);
+            ArrayList<CustomDTO> customDTOS = queryBO.customerOrderDetails(name);
             System.out.println(customDTOS);
 
             for (CustomDTO dto : customDTOS){
@@ -97,12 +100,6 @@ public class ViewOrdersFormController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
-
-    /*@FXML
-    void searchOrderOnAction(ActionEvent event){
-        String search = txtSearch.getText();
-        searchOrders(search);
-    }*/
 
     @FXML
     void navigateToHome(MouseEvent event) throws IOException {
