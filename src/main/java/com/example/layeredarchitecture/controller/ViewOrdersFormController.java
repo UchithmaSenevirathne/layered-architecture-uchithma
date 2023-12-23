@@ -1,7 +1,8 @@
 package com.example.layeredarchitecture.controller;
 
-import com.example.layeredarchitecture.bo.QueryBO;
-import com.example.layeredarchitecture.bo.impl.QueryBOImpl;
+import com.example.layeredarchitecture.bo.BOFactory;
+import com.example.layeredarchitecture.bo.custom.QueryBO;
+import com.example.layeredarchitecture.bo.custom.impl.QueryBOImpl;
 import com.example.layeredarchitecture.model.CustomDTO;
 import com.example.layeredarchitecture.view.tdm.CustomTM;
 import javafx.application.Platform;
@@ -52,7 +53,7 @@ public class ViewOrdersFormController {
 
     @FXML
     private TextField txtSearch;
-    QueryBO queryBO = new QueryBOImpl();
+    QueryBO queryBO = (QueryBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.QUERY);
 
     public void initialize(){
         setCellValueFactory();
