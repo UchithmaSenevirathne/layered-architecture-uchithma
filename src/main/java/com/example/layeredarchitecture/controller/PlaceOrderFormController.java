@@ -1,8 +1,10 @@
 package com.example.layeredarchitecture.controller;
 
 import com.example.layeredarchitecture.bo.*;
-import com.example.layeredarchitecture.dao.custom.*;
-import com.example.layeredarchitecture.dao.custom.impl.*;
+import com.example.layeredarchitecture.bo.impl.CustomerBOImpl;
+import com.example.layeredarchitecture.bo.impl.ItemBOImpl;
+import com.example.layeredarchitecture.bo.impl.OrderBOImpl;
+import com.example.layeredarchitecture.bo.impl.OrderDetailBOImpl;
 import com.example.layeredarchitecture.model.*;
 import com.example.layeredarchitecture.util.TransactionUtil;
 import com.example.layeredarchitecture.view.tdm.OrderDetailTM;

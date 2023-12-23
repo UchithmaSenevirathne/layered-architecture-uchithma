@@ -1,13 +1,10 @@
 package com.example.layeredarchitecture.controller;
 
 import com.example.layeredarchitecture.bo.QueryBO;
-import com.example.layeredarchitecture.bo.QueryBOImpl;
-import com.example.layeredarchitecture.dao.custom.QueryDAO;
-import com.example.layeredarchitecture.dao.custom.impl.QueryDAOImpl;
+import com.example.layeredarchitecture.bo.impl.QueryBOImpl;
 import com.example.layeredarchitecture.model.CustomDTO;
 import com.example.layeredarchitecture.view.tdm.CustomTM;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +20,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ViewOrdersFormController {
